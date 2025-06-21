@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The SQL Path: Learning Toolkit</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .section-title {
+            font-size: 2.25rem; /* text-4xl */
+            font-weight: 700; /* font-bold */
+            color: #1a202c; /* gray-900 */
+            margin-bottom: 1.5rem; /* mb-6 */
+            border-bottom: 2px solid #cbd5e0; /* border-b-2 border-gray-300 */
+            padding-bottom: 0.5rem; /* pb-2 */
+        }
+        .card {
+            background-color: #ffffff;
+            border-radius: 0.75rem; /* rounded-xl */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .code-block {
+            background-color: #1f2937; /* gray-800 */
+            color: #f9fafb; /* gray-50 */
+            padding: 1rem;
+            border-radius: 0.5rem; /* rounded-md */
+            overflow-x: auto;
+            font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+            font-size: 0.875rem; /* text-sm */
+            line-height: 1.5;
+        }
+        .download-button {
+            display: inline-block;
+            background-color: #4f46e5; /* indigo-600 */
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.2s ease-in-out;
+            margin-top: 1rem;
+        }
+        .download-button:hover {
+            background-color: #4338ca; /* indigo-700 */
+        }
+        .mermaidx { /* Renamed for general image container */
+            width: 100%;
+            text-align: center; /* Center the image */
+            background-color: #f0f4f8; /* light blue-gray */
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+        .mermaidx img {
+            max-width: 100%; /* Ensure image scales within its container */
+            height: auto; /* Maintain aspect ratio */
+            border-radius: 0.5rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+    <header class="bg-gradient-to-r from-indigo-600 to-purple-700 text-white p-6 shadow-lg">
+        <div class="container flex justify-between items-center">
+            <h1 class="text-3xl font-extrabold">The SQL Path</h1>
+            <nav>
+                <ul class="flex space-x-6">
+                    <li><a href="#scripts" class="hover:underline text-lg">SQL Scripts</a></li>
+                    <li><a href="#schema" class="hover:underline text-lg">Schema</a></li>
+                    <li><a href="#data" class="hover:underline text-lg">Sample Data</a></li>
+                    <li><a href="#worksheets" class="hover:underline text-lg">Worksheets</a></li>
+                    <li><a href="#setup" class="hover:underline text-lg">Setup Guide</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container py-8">
+        <section id="introduction" class="mb-12">
+            <h2 class="section-title">Welcome to Your SQL Path Toolkit!</h2>
+            <div class="card">
+                <p class="text-lg leading-relaxed">
+                    This toolkit is your companion for "The SQL Path: A Data Analyst's Playbook." It provides all the necessary resources to get hands-on with SQL, practice the examples, and solve the exercises from the book using the Databites e-commerce database. Dive in and solidify your understanding!
+                </p>
+                <p class="mt-4 text-lg leading-relaxed">
+                    All resources below are designed to be production-ready and immediately usable in your SQL learning environment.
+                </p>
+            </div>
+        </section>
+
+        <section id="scripts" class="mb-12">
+            <h2 class="section-title">1. SQL Script Collection</h2>
+            <div class="card">
+                <p class="text-lg leading-relaxed mb-4">
+                    Download ready-to-run `.sql` files containing all example queries and solutions, organized by chapter. Each file also includes comprehensive comments for better understanding.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="bg-gray-50 p-4 rounded-lg shadow-sm border border-gray-200">
+                        <h3 class="font-bold text-xl text-indigo-700 mb-2">Master Setup Script</h3>
+                        <p class="text-gray-600">Creates the Databites database tables and populates them with sample data.</p>
+                        <a href="#" class="download-button" download="setup_databites_db.sql">Download: setup_databites_db.sql</a>
+                        <h4 class="font-semibold text-lg mt-4 mb-2">Preview:</h4>
+                        <div class="code-block h-48 overflow-y-auto">
+                            <pre><code>-- Databites E-commerce Database Setup Script
+-- This script creates the CUSTOMERS, ORDERS, and PRODUCTS tables
+-- and populates them with sample data as described in "The SQL Path" book.
+
+-- Drop tables if they already exist to ensure a clean setup
+DROP TABLE IF EXISTS ORDERS;
+DROP TABLE IF EXISTS PRODUCTS;
+DROP TABLE IF EXISTS CUSTOMERS;
+
+-- 1. Create CUSTOMERS Table
+CREATE TABLE CUSTOMERS (
+    customer_id INT PRIMARY KEY,
+    first_name VARCHAR(255) NOT NULL,
+    last_name VARCHAR(255) NOT NULL,
+    country VARCHAR(255) NOT NULL,
+    signup_date DATE NOT NULL
+);
+
+-- ( ...truncated for preview. Full content in download. )
+
+-- Insert Sample Data into CUSTOMERS
+INSERT INTO CUSTOMERS (customer_id, first_name, last_name, country, signup_date) VALUES
+(1, 'Alice', 'Smith', 'USA', '2023-01-10'),
+(2, 'Bob', 'Johnson', 'Canada', '2023-01-15'),
+(3, 'Carol', 'Williams', 'USA', '2023-02-01'),
+(4, 'David', 'Brown', 'UK', '2023-02-05'),
+(5, 'Eve', 'Davis', 'USA', '2023-03-10'),
+(6, 'Frank', 'Miller', 'Canada', '2023-03-12'),
+(7, 'Grace', 'Wilson', 'Germany', '2023-04-01');
+
+-- ( ...truncated for preview. Full content in download. )</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-50 p-4 rounded-lg shadow-sm border border-gray-200">
+                        <h3 class="font-bold text-xl text-indigo-700 mb-2">Chapter 1: SELECT & FROM</h3>
+                        <p class="text-gray-600">Basic data retrieval and selection.</p>
+                        <a href="#" class="download-button" download="chapter_01_select_from.sql">Download: chapter_01_select_from.sql</a>
+                        <h4 class="font-semibold text-lg mt-4 mb-2">Preview:</h4>
+                        <div class="code-block h-48 overflow-y-auto">
+                            <pre><code>-- Chapter 1: Unlocking the Vault – SELECT and FROM
+-- Example: Retrieve all details for all products.
+SELECT *
+FROM PRODUCTS;
+
+-- Example: Get just the names and prices of our products.
+SELECT
+    product_name,
+    price
+FROM PRODUCTS;
+
+-- Exercise 1.1: Customer Names (Solution)
+-- Objective: Retrieve the first_name and last_name of all customers.
+SELECT
+    first_name,
+    last_name
+FROM CUSTOMERS;
+
+-- ( ...truncated for preview. Full content in download. )</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-50 p-4 rounded-lg shadow-sm border border-gray-200">
+                        <h3 class="font-bold text-xl text-indigo-700 mb-2">Chapter 2: WHERE Filters</h3>
+                        <p class="text-gray-600">Filtering data based on conditions.</p>
+                        <a href="#" class="download-button" download="chapter_02_where_filters.sql">Download: chapter_02_where_filters.sql</a>
+                        <h4 class="font-semibold text-lg mt-4 mb-2">Preview:</h4>
+                        <div class="code-block h-48 overflow-y-auto">
+                            <pre><code>-- Chapter 2: Precision Power – Filtering Data with WHERE
+-- Example: Retrieve all customer details for customers located in the 'USA'.
+SELECT *
+FROM CUSTOMERS
+WHERE country = 'USA';
+
+-- Exercise 2.1: Recent Sign-ups (Solution)
+-- Objective: Find all customers who signed up after '2023-02-01'.
+SELECT *
+FROM CUSTOMERS
+WHERE signup_date > '2023-02-01';
+
+-- ( ...truncated for preview. Full content in download. )</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-50 p-4 rounded-lg shadow-sm border border-gray-200">
+                        <h3 class="font-bold text-xl text-indigo-700 mb-2">Chapter 3: ORDER BY</h3>
+                        <p class="text-gray-600">Sorting your query results.</p>
+                        <a href="#" class="download-button" download="chapter_03_order_by.sql">Download: chapter_03_order_by.sql</a>
+                        <h4 class="font-semibold text-lg mt-4 mb-2">Preview:</h4>
+                        <div class="code-block h-48 overflow-y-auto">
+                            <pre><code>-- Chapter 3: Order in the Data – Sorting Your Results with ORDER BY
+-- Example: List all products from the most expensive to the least expensive.
+SELECT
+    product_name,
+    price
+FROM PRODUCTS
+ORDER BY price DESC;
+
+-- Exercise 3.1: Oldest Customers First (Solution)
+-- Objective: List all customers, ordered by their signup_date from oldest to newest.
+SELECT
+    first_name,
+    last_name,
+    signup_date
+FROM CUSTOMERS
+ORDER BY signup_date ASC;
+
+-- ( ...truncated for preview. Full content in download. )</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-50 p-4 rounded-lg shadow-sm border border-gray-200">
+                        <h3 class="font-bold text-xl text-indigo-700 mb-2">Chapter 4: GROUP BY & Aggregates</h3>
+                        <p class="text-gray-600">Summarizing data with functions like COUNT, SUM, AVG.</p>
+                        <a href="#" class="download-button" download="chapter_04_group_by_aggregates.sql">Download: chapter_04_group_by_aggregates.sql</a>
+                        <h4 class="font-semibold text-lg mt-4 mb-2">Preview:</h4>
+                        <div class="code-block h-48 overflow-y-auto">
+                            <pre><code>-- Chapter 4: The Power of Summaries – GROUP BY and Aggregate Functions
+-- Example: Count the number of customers per country.
+SELECT
+    country,
+    COUNT(customer_id) AS total_customers
+FROM CUSTOMERS
+GROUP BY country;
+
+-- Exercise 4.1: Customer Order Counts (Solution)
+-- Objective: Calculate the total number of orders placed by each customer.
+SELECT
+    customer_id,
+    COUNT(order_id) AS total_orders
+FROM ORDERS
+GROUP BY customer_id;
+
+-- ( ...truncated for preview. Full content in download. )</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-50 p-4 rounded-lg shadow-sm border border-gray-200">
+                        <h3 class="font-bold text-xl text-indigo-700 mb-2">Chapter 5: JOINS</h3>
+                        <p class="text-gray-600">Connecting data from multiple tables.</p>
+                        <a href="#" class="download-button" download="chapter_05_joins.sql">Download: chapter_05_joins.sql</a>
+                        <h4 class="font-semibold text-lg mt-4 mb-2">Preview:</h4>
+                        <div class="code-block h-48 overflow-y-auto">
+                            <pre><code>-- Chapter 5: Connecting the Dots – JOINS
+-- Example: Show me the names of customers and the IDs of the orders they placed.
+SELECT
+    C.first_name,
+    C.last_name,
+    O.order_id,
+    O.order_date
+FROM CUSTOMERS AS C
+INNER JOIN ORDERS AS O
+    ON C.customer_id = O.customer_id;
+
+-- Exercise 5.1: Order Details with Product Categories (Solution)
+-- Objective: List the order_id, product_name, and category for all orders.
+SELECT
+    O.order_id,
+    P.product_name,
+    P.category
+FROM ORDERS AS O
+INNER JOIN PRODUCTS AS P
+    ON O.product_id = P.product_id;
+
+-- ( ...truncated for preview. Full content in download. )</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-50 p-4 rounded-lg shadow-sm border border-gray-200">
+                        <h3 class="font-bold text-xl text-indigo-700 mb-2">Chapter 6: Subqueries</h3>
+                        <p class="text-gray-600">Nesting queries for complex filtering and temporary tables.</p>
+                        <a href="#" class="download-button" download="chapter_06_subqueries.sql">Download: chapter_06_subqueries.sql</a>
+                        <h4 class="font-semibold text-lg mt-4 mb-2">Preview:</h4>
+                        <div class="code-block h-48 overflow-y-auto">
+                            <pre><code>-- Chapter 6: Queries Within Queries – Subqueries
+-- Example: Find all customers who have ordered a 'Laptop' (product_id 1001).
+SELECT
+    first_name,
+    last_name
+FROM CUSTOMERS
+WHERE customer_id IN (SELECT customer_id
+                      FROM ORDERS
+                      WHERE product_id = 1001);
+
+-- Exercise 6.1: Customers Who Ordered Expensive Products (Solution)
+-- Objective: List the first_name and last_name of customers who have placed an order for a product with a price > $300.
+SELECT
+    C.first_name,
+    C.last_name
+FROM CUSTOMERS AS C
+WHERE C.customer_id IN (
+    SELECT O.customer_id
+    FROM ORDERS AS O
+    INNER JOIN PRODUCTS AS P ON O.product_id = P.product_id
+    WHERE P.price > 300
+);
+
+-- ( ...truncated for preview. Full content in download. )</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-50 p-4 rounded-lg shadow-sm border border-gray-200">
+                        <h3 class="font-bold text-xl text-indigo-700 mb-2">Chapter 7: CTEs (WITH Clause)</h3>
+                        <p class="text-gray-600">Breaking down complex queries with Common Table Expressions.</p>
+                        <a href="#" class="download-button" download="chapter_07_ctes.sql">Download: chapter_07_ctes.sql</a>
+                        <h4 class="font-semibold text-lg mt-4 mb-2">Preview:</h4>
+                        <div class="code-block h-48 overflow-y-auto">
+                            <pre><code>-- Chapter 7: Breaking Down Complexity – Common Table Expressions (WITH CTEs)
+-- Example: Calculate the total cost for each line item in an order.
+WITH OrderLineItemCosts AS (
+    SELECT
+        O.order_id,
+        O.customer_id,
+        O.quantity,
+        P.price,
+        (O.quantity * P.price) AS line_item_total
+    FROM ORDERS AS O
+    INNER JOIN PRODUCTS AS P ON O.product_id = P.product_id
+)
+SELECT *
+FROM OrderLineItemCosts;
+
+-- Exercise 7.1: Monthly Revenue Analysis (Solution)
+-- Objective: Calculate the total_revenue for each month.
+WITH OrderRevenue AS (
+    SELECT
+        order_id,
+        (quantity * (SELECT price FROM PRODUCTS WHERE product_id = O.product_id)) AS revenue_per_line_item,
+        order_date
+    FROM ORDERS AS O
+)
+SELECT
+    DATE_FORMAT(order_date, '%Y-%m') AS sale_month, -- For MySQL/PostgreSQL
+    SUM(revenue_per_line_item) AS total_monthly_revenue
+FROM OrderRevenue
+GROUP BY sale_month
+ORDER BY sale_month ASC;
+
+-- ( ...truncated for preview. Full content in download. )</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-50 p-4 rounded-lg shadow-sm border border-gray-200">
+                        <h3 class="font-bold text-xl text-indigo-700 mb-2">Chapter 8: Window Functions</h3>
+                        <p class="text-gray-600">Performing calculations across related rows.</p>
+                        <a href="#" class="download-button" download="chapter_08_window_functions.sql">Download: chapter_08_window_functions.sql</a>
+                        <h4 class="font-semibold text-lg mt-4 mb-2">Preview:</h4>
+                        <div class="code-block h-48 overflow-y-auto">
+                            <pre><code>-- Chapter 8: Data Comparisons & Rankings – Window Functions
+-- Example: For each order, calculate a running total of quantity ordered for that customer, ordered by date.
+SELECT
+    order_id,
+    customer_id,
+    order_date,
+    quantity,
+    SUM(quantity) OVER (PARTITION BY customer_id ORDER BY order_date ASC) AS running_customer_quantity
+FROM ORDERS;
+
+-- Exercise 8.1: Customer Lifetime Value (Simplified Running Total) (Solution)
+-- Objective: For each order, list customer_id, order_date, product_name, quantity, and a running_total_quantity.
+SELECT
+    O.customer_id,
+    O.order_date,
+    P.product_name,
+    O.quantity,
+    SUM(O.quantity) OVER (PARTITION BY O.customer_id ORDER BY O.order_date ASC) AS running_total_quantity
+FROM ORDERS AS O
+INNER JOIN PRODUCTS AS P ON O.product_id = P.product_id;
+
+-- ( ...truncated for preview. Full content in download. )</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-50 p-4 rounded-lg shadow-sm border border-gray-200">
+                        <h3 class="font-bold text-xl text-indigo-700 mb-2">Chapter 9: CASE Statements</h3>
+                        <p class="text-gray-600">Implementing IF/THEN/ELSE logic in your queries.</p>
+                        <a href="#" class="download-button" download="chapter_09_case_statements.sql">Download: chapter_09_case_statements.sql</a>
+                        <h4 class="font-semibold text-lg mt-4 mb-2">Preview:</h4>
+                        <div class="code-block h-48 overflow-y-auto">
+                            <pre><code>-- Chapter 9: Dynamic Logic – CASE Statements
+-- Example: Categorize products by price segment.
+SELECT
+    product_name,
+    price,
+    CASE
+        WHEN price < 100 THEN 'Budget'
+        WHEN price BETWEEN 100 AND 500 THEN 'Mid-Range'
+        WHEN price > 500 THEN 'Premium'
+        ELSE 'Uncategorized'
+    END AS price_segment
+FROM PRODUCTS;
+
+-- Exercise 9.1: Customer Loyalty Segment (Solution)
+-- Objective: List customer_id, first_name, last_name, and their loyalty_segment.
+SELECT
+    C.customer_id,
+    C.first_name,
+    C.last_name,
+    CASE
+        WHEN COUNT(O.order_id) = 1 THEN 'New'
+        WHEN COUNT(O.order_id) BETWEEN 2 AND 3 THEN 'Loyal'
+        WHEN COUNT(O.order_id) >= 4 THEN 'VIP'
+        ELSE 'No Orders'
+    END AS loyalty_segment
+FROM CUSTOMERS AS C
+LEFT JOIN ORDERS AS O ON C.customer_id = O.customer_id
+GROUP BY C.customer_id, C.first_name, C.last_name
+ORDER BY C.customer_id;
+
+-- ( ...truncated for preview. Full content in download. )</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-50 p-4 rounded-lg shadow-sm border border-gray-200">
+                        <h3 class="font-bold text-xl text-indigo-700 mb-2">Skill Checkpoints</h3>
+                        <p class="text-gray-600">Consolidate your learning with integrated challenges.</p>
+                        <a href="#" class="download-button" download="skill_checkpoints_solutions.sql">Download: skill_checkpoints_solutions.sql</a>
+                        <h4 class="font-semibold text-lg mt-4 mb-2">Preview:</h4>
+                        <div class="code-block h-48 overflow-y-auto">
+                            <pre><code>-- Skill Checkpoint: Basic Querying Mastery - 1. New Customer Report (Solution)
+-- Objective: Find customers who signed up in March 2023, ordered newest to oldest.
+SELECT
+    first_name,
+    last_name,
+    country
+FROM CUSTOMERS
+WHERE signup_date BETWEEN '2023-03-01' AND '2023-03-31'
+ORDER BY signup_date DESC;
+
+-- Skill Checkpoint: Aggregation and Joins Expertise - 1. Top Selling Categories (Solution)
+-- Objective: Find category and total_quantity_sold for categories with total_quantity_sold > 3.
+SELECT
+    P.category,
+    SUM(O.quantity) AS total_quantity_sold
+FROM ORDERS AS O
+INNER JOIN PRODUCTS AS P ON O.product_id = P.product_id
+GROUP BY P.category
+HAVING SUM(O.quantity) > 3
+ORDER BY total_quantity_sold DESC;
+
+-- ( ...truncated for preview. Full content in download. )</code></pre>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section id="schema" class="mb-12">
+            <h2 class="section-title">2. Databites Database Schema Diagram</h2>
+            <div class="card">
+                <p class="text-lg leading-relaxed mb-4">
+                    This Entity-Relationship Diagram (ERD) visually represents the structure of the Databites database, showing all tables, their fields, and the relationships (Primary Keys and Foreign Keys) between them.
+                    It's a crucial visual aid for understanding how data is organized and planning your `JOIN` operations.
+                </p>
+                <div class="mermaidx">
+                    <img src="images/databites_schema.png" alt="Databites Database Schema Diagram" onerror="this.onerror=null;this.src='https://placehold.co/800x400/cccccc/333333?text=Diagram+Not+Found';">
+                </div>
+            </div>
+        </section>
+
+        <section id="data" class="mb-12">
+            <h2 class="section-title">3. Synthetic Databites Datasets</h2>
+            <div class="card">
+                <p class="text-lg leading-relaxed mb-4">
+                    Get realistic sample data to populate your Databites database. Available in both CSV format (for easy import) and SQL `INSERT` statements (included in the master setup script).
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-gray-50 p-4 rounded-lg shadow-sm border border-gray-200">
+                        <h3 class="font-bold text-xl text-indigo-700 mb-2">Customers Data (.csv)</h3>
+                        <a href="#" class="download-button" download="customers.csv">Download: customers.csv</a>
+                        <h4 class="font-semibold text-lg mt-4 mb-2">Preview:</h4>
+                        <div class="code-block h-48 overflow-y-auto">
+                            <pre><code>customer_id,first_name,last_name,country,signup_date
+1,Alice,Smith,USA,2023-01-10
+2,Bob,Johnson,Canada,2023-01-15
+3,Carol,Williams,USA,2023-02-01
+4,David,Brown,UK,2023-02-05
+5,Eve,Davis,USA,2023-03-10
+6,Frank,Miller,Canada,2023-03-12
+7,Grace,Wilson,Germany,2023-04-01</code></pre>
+                        </div>
+                    </div>
+                    <div class="bg-gray-50 p-4 rounded-lg shadow-sm border border-gray-200">
+                        <h3 class="font-bold text-xl text-indigo-700 mb-2">Orders Data (.csv)</h3>
+                        <a href="#" class="download-button" download="orders.csv">Download: orders.csv</a>
+                        <h4 class="font-semibold text-lg mt-4 mb-2">Preview:</h4>
+                        <div class="code-block h-48 overflow-y-auto">
+                            <pre><code>order_id,customer_id,product_id,order_date,quantity
+101,1,1001,2023-01-12,2
+102,3,1003,2023-02-03,1
+103,1,1002,2023-02-15,1
+104,2,1001,2023-02-20,3
+105,4,1004,2023-03-01,1
+106,3,1001,2023-03-05,1
+107,5,1002,2023-03-15,2
+108,1,1005,2023-04-01,1
+109,6,1003,2023-04-05,1
+110,7,1004,2023-04-10,2</code></pre>
+                        </div>
+                    </div>
+                    <div class="bg-gray-50 p-4 rounded-lg shadow-sm border border-gray-200">
+                        <h3 class="font-bold text-xl text-indigo-700 mb-2">Products Data (.csv)</h3>
+                        <a href="#" class="download-button" download="products.csv">Download: products.csv</a>
+                        <h4 class="font-semibold text-lg mt-4 mb-2">Preview:</h4>
+                        <div class="code-block h-48 overflow-y-auto">
+                            <pre><code>product_id,product_name,category,price
+1001,Laptop,Electronics,1200
+1002,Mouse,Electronics,25
+1003,Keyboard,Electronics,75
+1004,Desk Chair,Furniture,250
+1005,Monitor,Electronics,300
+1006,Standing Desk,Furniture,450</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="worksheets" class="mb-12">
+            <h2 class="section-title">4. Printable Practice Worksheets</h2>
+            <div class="card">
+                <p class="text-lg leading-relaxed mb-4">
+                    Reinforce your learning with additional scenario-based exercises for each major skill checkpoint. Each worksheet includes challenges and detailed answer keys.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-gray-50 p-4 rounded-lg shadow-sm border border-gray-200">
+                        <h3 class="font-bold text-xl text-indigo-700 mb-2">Worksheet: Basic Querying</h3>
+                        <p class="text-gray-600">Exercises covering SELECT, FROM, WHERE, ORDER BY, LIMIT, DISTINCT.</p>
+                        <a href="#" class="download-button" download="worksheet_basic_querying.html">Download HTML</a>
+                    </div>
+                    <div class="bg-gray-50 p-4 rounded-lg shadow-sm border border-gray-200">
+                        <h3 class="font-bold text-xl text-indigo-700 mb-2">Worksheet: Aggregation & Joins</h3>
+                        <p class="text-gray-600">Exercises covering GROUP BY, Aggregate Functions, JOINs, Subqueries.</p>
+                        <a href="#" class="download-button" download="worksheet_aggregation_joins.html">Download HTML</a>
+                    </div>
+                    <div class="bg-gray-50 p-4 rounded-lg shadow-sm border border-gray-200">
+                        <h3 class="font-bold text-xl text-indigo-700 mb-2">Worksheet: Advanced Techniques</h3>
+                        <p class="text-gray-600">Exercises covering CTEs, Window Functions, CASE Statements.</p>
+                        <a href="#" class="download-button" download="worksheet_advanced_techniques.html">Download HTML</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="setup" class="mb-12">
+            <h2 class="section-title">5. Setup Guide: Get Started with Databites!</h2>
+            <div class="card">
+                <p class="text-lg leading-relaxed mb-4">
+                    To start practicing SQL with the Databites database, follow these simple steps:
+                </p>
+                <h3 class="font-bold text-xl text-indigo-700 mb-2">Step 1: Choose Your SQL Environment</h3>
+                <ul class="list-disc list-inside ml-4 text-gray-700 mb-4">
+                    <li><strong>Recommended for Beginners: SQLite</strong>
+                        <p class="text-sm ml-4">SQLite is a file-based database, requiring minimal setup. Tools like <a href="https://sqlitebrowser.org/" target="_blank" class="text-indigo-600 hover:underline">DB Browser for SQLite</a> provide a great graphical interface.</p>
+                    </li>
+                    <li><strong>Popular Options: MySQL or PostgreSQL</strong>
+                        <p class="text-sm ml-4">If you're comfortable with server-based databases, these are excellent choices. You'll need to install the database server and a client tool (e.g., MySQL Workbench, pgAdmin).</p>
+                    </li>
+                </ul>
+
+                <h3 class="font-bold text-xl text-indigo-700 mb-2">Step 2: Create the Databites Database Schema</h3>
+                <ul class="list-disc list-inside ml-4 text-gray-700 mb-4">
+                    <li>Download the <a href="#" class="text-indigo-600 hover:underline" download="setup_databites_db.sql"><code>setup_databites_db.sql</code></a> script from the "SQL Script Collection" above.</li>
+                    <li>Open your chosen SQL client (e.g., DB Browser for SQLite, MySQL Workbench, pgAdmin).</li>
+                    <li>Execute the `setup_databites_db.sql` script. This script will:
+                        <ul class="list-circle list-inside ml-8 text-gray-600">
+                            <li>Drop existing tables (if any) to ensure a clean start.</li>
+                            <li>Create the `CUSTOMERS`, `ORDERS`, and `PRODUCTS` tables with their respective columns and relationships.</li>
+                            <li>Insert the sample data directly into these tables.</li>
+                        </ul>
+                    </li>
+                    <li>Verify: After execution, you should see the `customers`, `orders`, and `products` tables populated with data.</li>
+                </ul>
+
+                <h3 class="font-bold text-xl text-indigo-700 mb-2">Step 3: Import Data (Optional, if not using `setup_databites_db.sql` for data)</h3>
+                <p class="text-gray-700 ml-4 mb-2">
+                    If your environment prefers CSV imports, you can use the individual CSV files:
+                </p>
+                <ul class="list-disc list-inside ml-4 text-gray-700 mb-4">
+                    <li>Download the <a href="#" class="text-indigo-600 hover:underline" download="customers.csv"><code>customers.csv</code></a>, <a href="#" class="text-indigo-600 hover:underline" download="orders.csv"><code>orders.csv</code></a>, and <a href="#" class="text-indigo-600 hover:underline" download="products.csv"><code>products.csv</code></a> files.</li>
+                    <li>Use your SQL client's import feature (e.g., "File -> Import -> Table from CSV file" in DB Browser for SQLite).</li>
+                    <li>Ensure you map the columns correctly during import.</li>
+                </ul>
+
+                <h3 class="font-bold text-xl text-indigo-700 mb-2">Step 4: Start Querying!</h3>
+                <p class="text-lg leading-relaxed ml-4">
+                    You're all set! Open the chapter-specific SQL scripts, copy the queries, and execute them in your database environment. Experiment, modify, and have fun mastering SQL!
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-800 text-white p-6 text-center mt-12">
+        <div class="container">
+            <p>&copy; 2025 The SQL Path. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

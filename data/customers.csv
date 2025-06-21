@@ -1,0 +1,8 @@
+customer_id,first_name,last_name,country,signup_date
+1,Alice,Smith,USA,2023-01-10
+2,Bob,Johnson,Canada,2023-01-15
+3,Carol,Williams,USA,2023-02-01
+4,David,Brown,UK,2023-02-05
+5,Eve,Davis,USA,2023-03-10
+6,Frank,Miller,Canada,2023-03-12
+7,Grace,Wilson,Germany,2023-04-01
